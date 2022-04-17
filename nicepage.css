@@ -36356,21 +36356,6 @@ a.u-link.u-text-hover-grey-90:hover {
   min-height: 80px;
 }
 
-.u-header .u-image-1 {
-  width: 64px;
-  height: 32px;
-  margin: 22px auto 26px 0;
-}
-
-.u-header .u-logo-image-1 {
-  width: 100%;
-  height: 100%;
-}
-@media (max-width: 1199px) {
-  .u-header .u-image-1 {
-    width: 64px;
-  }
-}
 
 
 
