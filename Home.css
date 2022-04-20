@@ -959,15 +959,15 @@
 }
 
 .u-section-8 .u-image-2 {
-  width: 259px;
-  height: 179px;
-  margin: 0 auto 0 9px;
+  width: 299px;
+  height: 206px;
+  margin: -12px auto 0 9px;
 }
 
 .u-section-8 .u-image-3 {
   width: 225px;
   height: 29px;
-  margin: 32px 0 0 auto;
+  margin: 16px 0 0 auto;
 }
 
 @media (max-width: 1199px) {
@@ -1011,6 +1011,10 @@
     width: 333px;
     height: 365px;
     margin-right: 0;
+  }
+
+  .u-section-8 .u-image-2 {
+    margin-top: 0;
   }
 }
 
