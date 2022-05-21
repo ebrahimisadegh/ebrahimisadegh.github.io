@@ -33,24 +33,16 @@
 .u-section-1 .u-text-1 {
   font-size: 3rem;
   line-height: 0.8;
-  margin: 30px 174px 0 0;
+  margin: 0 174px 0 0;
 }
 
 .u-section-1 .u-text-2 {
   line-height: 1.6;
-  margin: 53px 0 0;
-}
-
-.u-section-1 .u-icon-1 {
-  font-size: 0.5em;
-}
-
-.u-section-1 .u-icon-2 {
-  font-size: 0.5em;
+  margin: 47px 60px 0 0;
 }
 
 .u-section-1 .u-text-3 {
-  margin: 158px auto 0 0;
+  margin: 194px auto 0 0;
 }
 
 @media (max-width: 1199px) {
@@ -73,6 +65,10 @@
 
   .u-section-1 .u-text-1 {
     margin-right: 74px;
+  }
+
+  .u-section-1 .u-text-2 {
+    margin-right: 0;
   }
 }
 

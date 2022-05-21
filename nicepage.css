@@ -36359,33 +36359,21 @@ a.u-link.u-text-hover-grey-90:hover {
 
 
 
- .u-footer {
-  background-image: none;
-}
-
 .u-footer .u-sheet-1 {
   min-height: 12px;
 }
 @media (max-width: 1199px) {
   .u-footer .u-sheet-1 {
-    min-height: 99px;
+    min-height: 211px;
   }
 }
-@media (max-width: 991px) {
-  .u-footer .u-sheet-1 {
-    min-height: 76px;
-  }
-}
+
 @media (max-width: 767px) {
   .u-footer .u-sheet-1 {
-    min-height: 57px;
+    min-height: 151px;
   }
 }
-@media (max-width: 575px) {
-  .u-footer .u-sheet-1 {
-    min-height: 36px;
-  }
-}
+
 
  /*begin-variables base-font-size*/ 
  html { font-size: 16px; }
