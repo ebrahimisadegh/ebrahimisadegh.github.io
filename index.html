@@ -3,7 +3,7 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="Dr. Sadegh Ebrahimi, Media coverage, Selec​ted P​rojects, Visual information coding and communication in cortical neural networks, Smart wireless neuro-moscular stimulator for hand control in disabled people, Visual scene reconstruction from brain activity, Adaptive event clustering in computer networks, Pashmak Farsi course, Selected Publications">
+    <meta name="keywords" content="Dr. Sadegh Ebrahimi, Media coverage, Selec​ted P​rojects, Visual information coding and communication in cortical neural networks, Smart wireless neuro-moscular stimulator for hand control in disabled people, Visual scene reconstruction from brain activity, Adaptive event clustering in computer networks, Vibe Coded Apps, Davood Khatar game, Pashmak Farsi course, Selected Publications">
     <meta name="description" content="">
     <meta name="page_type" content="np-template-header-footer-from-plugin">
     <title>Home</title>
@@ -334,28 +334,39 @@ project during post-doc and was awarded a Simons Foundation grant. A paper conta
         </div>
       </div>
     </section>
-    <section class="u-clearfix pm-project" id="pashmak">
+    <section class="u-clearfix vc-section" id="vibe-coded-apps">
       <style>
-        .pm-project .pm-wrap { max-width: 1140px; margin: 0 auto; padding: 0 20px 50px; display: flex; gap: 40px; align-items: flex-start; }
-        .pm-project .pm-line { max-width: 1140px; margin: 0 auto 40px; border-top: 3px solid #e1e1e1; }
-        .pm-project .pm-text { flex: 1 1 50%; }
-        .pm-project .pm-pics { flex: 1 1 50%; }
-        .pm-project .pm-pics img { width: 100%; display: block; border-radius: 4px; box-shadow: 0 2px 10px rgba(0,0,0,0.12); }
-        .pm-project h2 { margin: 0; }
-        .pm-project p { text-align: justify; margin: 30px 0 0; }
-        .pm-project .pm-open { display: inline-block; margin: 26px 0 0; padding: 12px 26px; background: #1c2d6b; color: #ffffff; border: 2px solid #f4a51c; border-radius: 4px; text-transform: uppercase; letter-spacing: 2px; font-size: 0.875rem; font-weight: 700; text-decoration: none; }
-        .pm-project .pm-open:hover { background: #26398a; }
-        @media (max-width: 767px) { .pm-project .pm-wrap { flex-direction: column; } }
+        .vc-section .vc-head { max-width: 1140px; margin: 0 auto; padding: 0 20px; text-align: center; }
+        .vc-section .vc-head h2 { font-weight: 700; margin: 73px auto 0; }
+        .vc-section .vc-head .vc-rule { max-width: 912px; margin: 20px auto 40px; border-top: 3px solid #4d4d4d; }
+        .vc-section .vc-grid { max-width: 1140px; margin: 0 auto; padding: 0 20px 60px; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+        .vc-section .vc-card { display: flex; flex-direction: column; }
+        .vc-section .vc-card img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; object-position: top; display: block; border-radius: 4px; box-shadow: 0 2px 10px rgba(0,0,0,0.12); }
+        .vc-section .vc-card h3 { margin: 26px 0 0; font-size: 1.5rem; }
+        .vc-section .vc-card p { text-align: justify; margin: 18px 0 0; flex: 1; }
+        .vc-section .vc-btn { align-self: flex-start; display: inline-block; margin: 24px 0 0; padding: 12px 26px; border: 2px solid; border-radius: 4px; text-transform: uppercase; letter-spacing: 2px; font-size: 0.875rem; font-weight: 700; text-decoration: none; }
+        .vc-section .vc-dk { background: #0c1640; color: #f2c75a; border-color: #d6aa45; }
+        .vc-section .vc-dk:hover { background: #16245e; }
+        .vc-section .vc-pm { background: #1c2d6b; color: #ffffff; border-color: #f4a51c; }
+        .vc-section .vc-pm:hover { background: #26398a; }
+        @media (max-width: 767px) { .vc-section .vc-grid { grid-template-columns: 1fr; gap: 50px; } }
       </style>
-      <div class="pm-line"></div>
-      <div class="pm-wrap">
-        <div class="pm-text">
-          <h2 class="u-text">Pashmak: a spoken Farsi course for English speakers</h2>
-          <p class="u-text">A browser app I built with Claude Code to help my wife learn everyday Tehran Farsi for travel and family conversations. Pashmak, a fluffy Persian cat, guides the learner through 20 short lessons with listening games, speaking practice, role-play stories, a little reading of Persian script, and a recorded spoken exam at the end of each lesson. The Persian voices are generated with Piper text-to-speech, and family members can record their own voices for any phrase.</p>
-          <a href="pashmak/" class="pm-open" target="_blank">Open the app</a>
+      <div class="vc-head">
+        <h2 class="u-text">Vibe Coded Apps</h2>
+        <div class="vc-rule"></div>
+      </div>
+      <div class="vc-grid">
+        <div class="vc-card">
+          <img src="images/davood-khatar-isfahan.jpg" alt="Davood Khatar, level 1: Naqsh-e Jahan Square, Isfahan">
+          <h3 class="u-text">Davood Khatar: a Dangerous Dave remake set in Iran</h3>
+          <p class="u-text">A browser game I designed and built from scratch using Claude Code, in plain JavaScript and HTML5 canvas, as a tribute to John Romero's 1990 DOS classic <i>Dangerous Dave</i>. Important landmarks in Iran are featured throughout the game, and the story has many twists and turns. All sound and music are synthesized in the browser.</p>
+          <a href="davood-khatar/" class="vc-btn vc-dk" target="_blank">Play the game</a>
         </div>
-        <div class="pm-pics">
+        <div class="vc-card">
           <img src="images/pashmak-home.jpg" alt="Pashmak app home screen: the road trip map of 20 Farsi lessons">
+          <h3 class="u-text">Pashmak: a spoken Farsi course for English speakers</h3>
+          <p class="u-text">A browser app I built with Claude Code to help my wife learn everyday Tehran Farsi for travel and family conversations. Pashmak, a fluffy Persian cat, guides the learner through 20 short lessons with listening games, speaking practice, role-play stories, a little reading of Persian script, and a recorded spoken exam at the end of each lesson. The Persian voices are generated with Piper text-to-speech, and family members can record their own voices for any phrase.</p>
+          <a href="pashmak/" class="vc-btn vc-pm" target="_blank">Open the app</a>
         </div>
       </div>
     </section>
