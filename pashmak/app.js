@@ -306,6 +306,7 @@ function go(view, arg) {
   if (view === "results") return Results();
   if (view === "settings") return Settings();
   if (view === "voices") return Voices(arg || 1);
+  if (view === "review") return Review(arg);
 }
 
 /* ---------------- home ---------------- */
@@ -351,7 +352,7 @@ function drawRoad(road, nx) {
   LESSONS.forEach((l, i) => {
     const st = S.lessons[l.n] || {};
     const cls = "stop" + (st.done ? " done" : "") + (l.n === nx && !st.done ? " next" : "");
-    const b = h("button", { class: cls, style: `left:${pts[i].x}px;top:${pts[i].y - 37}px`, onclick: () => go("lesson", l.n), "aria-label": `Stop ${l.n}: ${l.title}` },
+    const b = h("button", { class: cls, style: `left:${pts[i].x}px;top:${pts[i].y - 37}px`, onclick: () => go(st.done ? "review" : "lesson", l.n), "aria-label": `Stop ${l.n}: ${l.title}` + (st.done ? " (review words and phrases)" : "") },
       h("div", { class: "disc" }, String(l.n)),
       h("div", { class: "lbl" }, l.title, h("small", null, l.city + " · ", h("span", { class: "fa" }, l.fa)), st.done ? h("div", { class: "stars", html: starsHtml(st.stars || 0) }) : null));
     road.append(b);
@@ -710,7 +711,7 @@ function StepExam(ls) {
     S.xp += 50 + stars * 25 + lc * 5; save();
     beep("win"); confetti();
     const nextN = L.n < 20 ? L.n + 1 : null;
-    box.replaceChildren(h("div", { class: "card", style: "text-align:center" },
+    Review(L.n, h("div", { class: "card", style: "text-align:center;margin-bottom:26px" },
       mascotEl("wow", "bob"),
       h("div", { class: "stars", style: "font-size:54px", html: starsHtml(stars) }),
       h("h2", null, stars === 3 ? "Superstar! Afarin!" : stars === 2 ? "Great job! Kheyli khoob!" : "You did it! Every recording helps."),
@@ -750,6 +751,59 @@ function summaryMd(all) {
     md += "\n";
   }
   return md;
+}
+
+/* ---------------- review: everything from one stop ---------------- */
+function Review(n, celebrate) {
+  const L = LESSONS[n - 1];
+  const audioReady = loadAudio(n);
+  const st = S.lessons[n] || {};
+  let playing = 0;
+  const playBtn = (key, label, cls = "btn small") => h("button", { class: cls, onclick: e => { e.stopPropagation(); playing++; audioReady.then(() => play(key)); }, "aria-label": label }, label);
+  const item = (fa, tr, en, note, a, s) => h("div", { class: "rv-item", onclick: () => { playing++; audioReady.then(() => play(a)); } },
+    h("div", { class: "rv-text" },
+      h("div", { class: "fa rv-fa" }, fa),
+      trEl(tr, "rv-tr"),
+      h("div", { class: "rv-en" }, en),
+      note ? h("div", { class: "rv-note" }, note) : null),
+    h("div", { class: "rv-btns" }, a ? playBtn(a, "Listen") : null, s ? playBtn(s, "Slow", "btn small ghost") : null));
+  async function playAll(btn, list) {
+    const tok = ++playing; btn.textContent = "Playing...";
+    await audioReady;
+    for (const k of list) { if (tok !== playing) break; await play(k); if (tok !== playing) break; await sleep(900); }
+    if (tok === playing) playing++;
+    btn.textContent = "Play them all";
+  }
+  const section = (eyebrow, heading, items, keys) => {
+    const pa = keys.length ? h("button", { class: "btn small saffron", onclick: e => { if (e.currentTarget.textContent !== "Play them all") { playing++; stopAudio(); e.currentTarget.textContent = "Play them all"; } else playAll(e.currentTarget, keys); } }, "Play them all") : null;
+    return h("section", { class: "rv-sec" },
+      h("div", { class: "rv-head" }, h("div", null, h("div", { class: "eyebrow" }, eyebrow), h("h3", null, heading)), pa),
+      h("div", { class: "rv-list" }, items));
+  };
+  const P = L.phrases, W = L.script.words, D = L.dialogue.lines, X = L.script.letters;
+  const body = h("div", null,
+    celebrate || null,
+    h("div", { class: "rv-top" },
+      h("div", null,
+        h("div", { class: "eyebrow" }, `Stop ${L.n} · ${L.city} · Review`),
+        h("h2", null, L.title),
+        st.done ? h("div", { class: "stars", style: "font-size:22px;margin-top:4px", html: starsHtml(st.stars || 0) }) : null),
+      h("div", { class: "row" },
+        h("button", { class: "btn small ghost", onclick: () => go("home") }, "Back to the map"),
+        h("button", { class: "btn small", onclick: () => go("lesson", n) }, "Redo this stop"))),
+    guide(`Here's everything from Stop ${L.n}: ${P.length} phrases and ${W.length} reading words. Tap any card to hear it. Come back any time by tapping this stop on the map.`, "happy"),
+    section("Say it", "Phrases", P.map(p => item(p.fa, p.tr, p.en, p.note, p.a, p.s)), P.map(p => p.a).filter(Boolean)),
+    section("Read it", "Words", W.map(w => item(w.fa, w.tr, w.en, "", w.a)), W.map(w => w.a).filter(Boolean)),
+    X.length ? h("section", { class: "rv-sec" }, h("div", { class: "rv-head" }, h("div", null, h("div", { class: "eyebrow" }, "Persian script"), h("h3", null, "New letters"))),
+      h("div", { class: "letters" }, X.map(l => h("div", { class: "card letter" }, h("div", { class: "g" }, l.g), h("div", { class: "n" }, l.name), h("div", { class: "s" }, l.sound), h("p", null, l.tip))))) : null,
+    section("The story", L.dialogue.scene, D.map(x => h("div", { class: "rv-item rv-line " + x.who, onclick: () => { playing++; audioReady.then(() => play(x.a)); } },
+      h("div", { class: "rv-who" }, x.who === "Y" ? "You" : "Them"),
+      h("div", { class: "rv-text" }, h("div", { class: "fa rv-fa" }, x.fa), trEl(x.tr, "rv-tr"), h("div", { class: "rv-en" }, x.en)))), D.map(x => x.a).filter(Boolean)),
+    h("div", { class: "row center", style: "margin-top:30px" },
+      L.n < 20 ? h("button", { class: "btn saffron", onclick: () => go("lesson", L.n + 1) }, (S.lessons[L.n + 1] || {}).done ? `Stop ${L.n + 1}` : `On to Stop ${L.n + 1}`) : null,
+      h("button", { class: "btn ghost", onclick: () => go("home") }, "Back to the map")));
+  mount(header(topbar()), h("main", { class: "wrap stage review" }, body));
+  cleanup = () => { playing++; };
 }
 
 /* ---------------- results ---------------- */

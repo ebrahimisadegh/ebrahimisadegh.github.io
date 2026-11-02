@@ -186,6 +186,24 @@ canvas#confetti{position:fixed;inset:0;pointer-events:none;z-index:60}
 .vrow{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center;border-top:1px dashed var(--line);padding:10px 0}
 .hidden{display:none!important}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+/* Review page */
+.rv-top{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;margin-bottom:22px}
+.rv-sec{margin-top:30px}
+.rv-head{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;flex-wrap:wrap;margin-bottom:12px}
+.rv-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+@media (max-width:700px){.rv-list{grid-template-columns:1fr}}
+.rv-item{background:#fff;border:2px solid var(--ink);border-radius:14px;box-shadow:3px 4px 0 var(--ink);padding:12px 14px;display:flex;gap:12px;align-items:center;cursor:pointer;min-width:0}
+.rv-item:hover{background:var(--turq-soft)}
+.rv-text{flex:1;min-width:0}
+.rv-fa{font-size:26px;font-weight:800;color:var(--lapis);line-height:1.5;text-align:left}
+.rv-tr{font-weight:900;color:var(--pom);font-size:17px}
+.rv-en{font-weight:700}
+.rv-note{font-size:14px;color:var(--ink-2);margin-top:2px}
+.rv-btns{display:flex;flex-direction:column;gap:8px;flex:none}
+.rv-who{flex:none;width:52px;font-weight:900;font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--turq)}
+.rv-line.Y{background:var(--saffron-soft)}
+.rv-line.Y:hover{background:#ffe6ad}
+.review .rv-sec .letters{margin-top:0}
 </style>
 </head>
 <body>
